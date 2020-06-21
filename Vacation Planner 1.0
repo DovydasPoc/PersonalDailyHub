@@ -1,0 +1,75 @@
+package com.company;
+
+import java.util.Scanner;
+
+public class VacationJournal {
+
+    public static void main(String[] args) {
+Greeter(); // Welcomes the user, as well as asks for his name, surname and destination of it's journey.
+Finance(); // Reviews the Finance limits with the user as well as provides few fun facts.
+TimeZone();
+Teritory();
+    }
+        public static void Greeter (){
+        System.err.println("Welcome to your Vacation Journal! (v1.0)");
+        //IDEA - About Welcome. More exciting stuff like few custom symbols (copyright) + certain bracket layout around the word.
+
+        Scanner Name = new Scanner(System.in);
+        System.out.println("Hello! What is your Name and Surname ? ");
+        String FullName = Name.nextLine();
+        System.out.println("Glad to help you with your travels, " + FullName + ". Where would you like to travel?");
+        //IDEA - Review the use of Scanners. Make it clean!
+        Scanner Place = new Scanner(System.in);
+        String Destination = Place.nextLine();
+            System.out.println("What a lovely choice! "+ Destination+" is great!");
+
+        // IDEA - the response would include only the name of the person. Like "bla bla NAME, bla bla".
+        // Could be done with substring. + if/else with trim function to check and extract 'first word'.
+        // Would need to add exceptions like Sir, Mr., or Mrs. :)
+    }
+    public static void Finance (){
+        // Playing with Mathematical Operations
+        // Time variables
+        Scanner Time = new Scanner(System.in);
+        System.out.println("How many days are you planning to spend travelling?");
+        double JourneyPeriod = Time.nextDouble();
+        //IDEA. Must prepare for numbers AND words to be typed in!
+        double InHours = JourneyPeriod * 24;
+        double InMinutes = InHours * 60;
+        //IDEA. I need only one number past the dot. Like 5.5 and that is it. nothing like 5.55555 :)
+        //FIX. Something is not right here.
+        // Funds variables
+        Scanner HomeMoney = new Scanner(System.in);
+        System.out.println("How much money (EUR) are you planning to spend on your trip?");
+        double TripBudget = HomeMoney.nextDouble();
+        double DailyOldExpenditure = TripBudget / JourneyPeriod;
+        //IDEA. Same thing as before. Cut few numbers in the back.
+        // Currency
+        Scanner Symbols = new Scanner(System.in);
+        System.out.println("What is the three letter currency symbol (ABC) for your travel destination?");
+        String Currency = Symbols.nextLine();
+        // Funds variables #2
+        Scanner TripMoney = new Scanner(System.in);
+        System.out.println("How many "+Currency+" there are in 1 EUR?");
+        double ExpenditureInNewCurrency = TripMoney.nextDouble();
+        double NewCurrencyTotalBudget = TripBudget * ExpenditureInNewCurrency;
+        double NewCurrencyDailyBudget = NewCurrencyTotalBudget / JourneyPeriod;
+        //Now the best part of this method below...
+        System.out.println("If you are planning to travel for "+JourneyPeriod+" days, its the same as traveling non-stop for "+InHours+ " hours or even "+InMinutes+" minutes! How mind bending is that!");
+        System.out.println("If you are going to spend "+TripBudget+" EUR, this means that per day you can spend up to "+DailyOldExpenditure+" EUR !");
+        System.out.println("In other terms, your total budget in "+Currency+" is "+NewCurrencyTotalBudget+" "+Currency+", which on daily terms is "+NewCurrencyDailyBudget+" "+Currency+".");
+    }
+    public static void TimeZone(){
+        Scanner Diff = new Scanner(System.in);
+        System.out.println("What is the time difference, in hours, between your home and your destination?");
+        double TimeDiff = Diff.nextDouble();
+        System.out.println("That means that when it is midnight at home, it will be " + (TimeDiff % 24) + " o'clock (AM) in your travel destination or when it is noon at home, it's " + (TimeDiff % 12) + "PM");
+        //IDEA. use Destination from Greeter method instead of 'travel destination'.
+    }
+        public static void Teritory() {
+            Scanner input = new Scanner(System.in);
+            System.out.println("What is the square area of your destination country in km?");
+            int SquareArea = input.nextInt();
+            System.out.println("In miles? That is "+( SquareArea / 2.59)+" miles");
+    }
+}
